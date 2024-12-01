@@ -14,7 +14,7 @@ pipeline{
         stage("Sonarqube scan"){
             steps{
                 withSonarQubeEnv(installationName: 'sq1'){
-                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                    sh 'mvn clean verify sonar:sonar  -Dsonar.projectKey=pep1  -Dsonar.projectName='pep1''
                 }
               dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owasp-dc'
             }
