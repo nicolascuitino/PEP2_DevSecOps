@@ -14,7 +14,7 @@ pipeline{
         stage("Sonarqube scan"){
             steps{
                 withSonarQubeEnv(installationName: 'sq1'){
-                    sh 'mvn clean verify sonar:sonar  -Dsonar.projectKey=pep1  -Dsonar.projectName='pep1''
+                    sh 'mvn clean verify sonar:sonar  -Dsonar.projectKey=pep2_DevSecOps  -Dsonar.projectName='pep2_DevSecOps''
                 }
               dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owasp-dc'
             }
