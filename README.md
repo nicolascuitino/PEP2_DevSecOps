@@ -44,7 +44,7 @@ Sonarqube en Jenkins: video: https://www.youtube.com/watch?v=KsTMy0920go
 	- Añadir servidor de sonarqube y definir su nombre, en este caso es "sq1"
 	- Ingresar la URL de sonarqube, si sonarqube corre localmente esta es "http://localhost:9000" 
 
-Dentro de sonarqube:
+- Dentro de sonarqube:
 	- ingresar con username y password: "admin"
 	- cambiar la contraseña, ej: "Password123."
 	- ir a "Administration/security/users"
@@ -52,7 +52,7 @@ Dentro de sonarqube:
 	- en generate tokens ingresar un nombre (ej:jenkins) y click en generar
 	- Copiar el token generado (ejemplo de token: squ_47aa057b937f5db336f986b5c11332bca6099019)
 
-Dentro de Jenkins:
+- Dentro de Jenkins:
 	- Una vez generado el token de sonarqube, añadir un "Server authentication token"
 	- En "kind" seleccionar "secret text"
 	- En "secret" ingresar el token generado
