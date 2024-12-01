@@ -10,6 +10,15 @@ pipeline{
               dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owasp-dc'
             }
         }
+
+        stage("Sonarqube scan"){
+            steps{
+                withSonarQubeEnv(installationName: 'sq1'){
+                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                }
+              dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owasp-dc'
+            }
+        }
         
         stage("Build JAR FILE"){
             steps{
