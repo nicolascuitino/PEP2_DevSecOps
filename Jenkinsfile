@@ -16,7 +16,6 @@ pipeline{
                 withSonarQubeEnv(installationName: 'sq1'){
                     sh 'mvn clean package sonar:sonar'
                 }
-              dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owasp-dc'
             }
         }
         
