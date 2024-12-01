@@ -31,13 +31,13 @@ Pasos a seguir:
 
 
 
-Sonarqube en Jenkins: video: https://www.youtube.com/watch?v=KsTMy0920go
+- Sonarqube en Jenkins: video: https://www.youtube.com/watch?v=KsTMy0920go
 
-- Descargar e instalar sonarqube: ejecutar archivo StartSonar.bat en "bin\windows-x86-64" una vez descomprimido el archivo zip
+ - Descargar e instalar sonarqube: ejecutar archivo StartSonar.bat en "bin\windows-x86-64" una vez descomprimido el archivo zip
 
 
  - Dentro de Jenkins:
-	- Ir a administrar Jenkins/plugins
+	- Ir a "administrar Jenkins/plugins"
 	- en "Available Plugins" buscar sonarqube e instalar sonarqube scanner
 	- una vez instalado, dentro de "administrar jenkins/system"
 	- En "SonarQube servers" seleccionar "Environment variables"
@@ -53,7 +53,7 @@ Sonarqube en Jenkins: video: https://www.youtube.com/watch?v=KsTMy0920go
 	- Copiar el token generado (ejemplo de token: squ_47aa057b937f5db336f986b5c11332bca6099019)
 
 - Dentro de Jenkins:
-	- Una vez generado el token de sonarqube, añadir un "Server authentication token"
+	- Una vez generado el token de sonarqube y dentro de "SonarQube servers", añadir un "Server authentication token"
 	- En "kind" seleccionar "secret text"
 	- En "secret" ingresar el token generado
 	- En "id" y description ingresar "jenkins-sonar"
