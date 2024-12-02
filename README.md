@@ -1,6 +1,7 @@
 Pasos a seguir:
 
-- Descargar e instalar Jenkins
+- Levantar jenkins y sonarqube en docker con docker-compose: docker-compose up -d --build
+- Al levantar Jenkins con docker es necesario obtener la contraseña generada automaticamente dentro de la consola de jenkins en docker
 
   - Configurar Maven: 
   	-Ir a "administrar jenkins/tools"
@@ -33,7 +34,7 @@ Pasos a seguir:
 
 - Sonarqube en Jenkins: video: https://www.youtube.com/watch?v=KsTMy0920go
 
- - Descargar e instalar sonarqube: ejecutar archivo StartSonar.bat en "bin\windows-x86-64" una vez descomprimido el archivo zip
+ - Descargar e instalar sonarqube local: ejecutar archivo StartSonar.bat en "bin\windows-x86-64" una vez descomprimido el archivo zip
 
 
  - Dentro de Jenkins:
@@ -42,7 +43,7 @@ Pasos a seguir:
 	- una vez instalado, dentro de "administrar jenkins/system"
 	- En "SonarQube servers" seleccionar "Environment variables"
 	- Añadir servidor de sonarqube y definir su nombre, en este caso es "sq1"
-	- Ingresar la URL de sonarqube, si sonarqube corre localmente esta es "http://localhost:9000" 
+	- Ingresar la URL de sonarqube, si sonarqube corre localmente esta es "http://localhost:9000". Con docker: "http://sonarqube:9000"
 
 - Dentro de sonarqube:
 	- ingresar con username y password: "admin"
@@ -64,3 +65,10 @@ Pasos a seguir:
 
 
 - Para ejecutar el pipeline seleccionar la tarea creada dentro de Jenkins y seleccionar "construir ahora"
+- 
+
+- Sonarqube Quality gate (solo con docker):
+	-  Dentro de sonarqube ir a "Administration/configuration/webhooks"
+        -  Crear webhook con nombre "Jenkins" y URL: http://jenkins:8080/sonarqube-webhook/
+        -  ir a "Quality gates" y crear quality gate con nombre "pep2"
+        -  añadir condición:  
