@@ -39,7 +39,7 @@ Pasos a seguir:
 
  - Dentro de Jenkins:
 	- Ir a "administrar Jenkins/plugins"
-	- en "Available Plugins" buscar sonarqube e instalar sonarqube scanner
+	- en "Available Plugins" buscar sonarqube e instalar sonarqube scanner, luego seleccionar la opcion "reiniciar jenkins"
 	- una vez instalado, dentro de "administrar jenkins/system"
 	- En "SonarQube servers" seleccionar "Environment variables"
 	- Añadir servidor de sonarqube y definir su nombre, en este caso es "sq1"
