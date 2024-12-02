@@ -71,4 +71,5 @@ Pasos a seguir:
 	-  Dentro de sonarqube ir a "Administration/configuration/webhooks"
         -  Crear webhook con nombre "Jenkins" y URL: http://jenkins:8080/sonarqube-webhook/
         -  ir a "Quality gates" y crear quality gate con nombre "pep2"
-        -  añadir condición:  
+        -  añadir condición:  vulnerability: 0
+        -  definir quality gate como default (set as default)
