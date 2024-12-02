@@ -9,7 +9,7 @@ services:
     environment:
       - SONAR_FORCEAUTHENTICATION=false
   jenkins:
-    image: jenkins/jenkins:lts-jdk11
+    image: jenkins/jenkins:jdk17
     restart: always
     privileged: true
     user: root
