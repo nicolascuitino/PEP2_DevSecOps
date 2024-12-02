@@ -3,7 +3,7 @@ Pasos a seguir:
 - Levantar jenkins y sonarqube en docker con docker-compose: docker-compose up -d --build
 - Al levantar Jenkins con docker es necesario obtener la contraseña generada automaticamente dentro de la consola de jenkins en docker
 
-  - Configurar Maven: 
+  - Configurar Maven dentro de Jenkins: 
   	-Ir a "administrar jenkins/tools"
   	-En "Git installations" activar la opción "Instalar autimaticamente"
   	-En  instalaciones de Maven, añadir una nueva instalación con nombre M3 y seleccionar instalar
