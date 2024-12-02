@@ -28,7 +28,7 @@ Pasos a seguir:
 	- en "Available Plugins" buscar owasp e instalar OWASP Dependency-check plugin
 	- ir a "administrar jenkins/tools" hasta "instalaciones de Dependency-Check "
 	- añadir dependency check e ingresar nombre "owasp-dc"
-	- seleccionar "instalar automáticamente"
+	- seleccionar "instalar automáticamente" con instalacion desde github
 
 
 
@@ -67,7 +67,7 @@ Pasos a seguir:
 - Para ejecutar el pipeline seleccionar la tarea creada dentro de Jenkins y seleccionar "construir ahora"
 - 
 
-- Sonarqube Quality gate (solo con docker):
+- Sonarqube Quality gate (solo con docker): videos: https://www.youtube.com/watch?v=KsTMy0920go https://www.youtube.com/watch?app=desktop&v=jrksCo-M1Ns&t=59s
 	-  Dentro de sonarqube ir a "Administration/configuration/webhooks"
         -  Crear webhook con nombre "Jenkins" y URL: http://jenkins:8080/sonarqube-webhook/
         -  ir a "Quality gates" y crear quality gate con nombre "pep2"
