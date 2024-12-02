@@ -1,0 +1,24 @@
+version: "3"
+services:
+  sonarqube:
+    image: sonarqube:lts
+    ports:
+      - 9000:9000
+    networks:
+      - mynetwork
+    environment:
+      - SONAR_FORCEAUTHENTICATION=false
+  jenkins:
+    image: jenkins/jenkins:lts-jdk11
+    restart: always
+    privileged: true
+    user: root
+    ports:
+      - "8080:8080"
+    volumes:
+      - /home/suresh/jenkins_data/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
