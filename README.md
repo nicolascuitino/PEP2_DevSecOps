@@ -4,10 +4,10 @@ Pasos a seguir:
 - Al levantar Jenkins con docker es necesario obtener la contraseña generada automaticamente dentro de la consola de jenkins en docker
 
   - Configurar Maven dentro de Jenkins: 
-  	-Ir a "administrar jenkins/tools"
-  	-En "Git installations" activar la opción "Instalar autimaticamente"
-  	-En  instalaciones de Maven, añadir una nueva instalación con nombre M3 y seleccionar instalar
-	 automáticamente
+  	- Ir a "administrar jenkins/tools"
+  	- En "Git installations" activar la opción "Instalar autimaticamente"
+  	- En  instalaciones de Maven, añadir una nueva instalación con nombre M3 y seleccionar instalar
+	  automáticamente
 
   - Crear pipeline: video: https://www.youtube.com/watch?v=nYM1gaaG2QY&list=PLjNII-Jkdjfz5EXWlGMBRk63PC8uJsHMo&index=10
   	- Crear una nueva tarea o job dentro de Jenkins
