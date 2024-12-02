@@ -11,7 +11,13 @@ pipeline{
             }
         }
 
-      
+      stage("Sonarqube scan"){
+            steps{
+                withSonarQubeEnv(installationName: 'sq1'){
+                    sh 'mvn clean package sonar:sonar'
+                }
+            }
+        }
         
         stage("Build JAR FILE"){
             steps{
