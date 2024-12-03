@@ -4,7 +4,11 @@ pipeline{
         maven "M3"
     }
     stages{
-
+        stage("Dependency check"){
+            steps{
+              dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owasp-dc'
+            }
+        }
         
 
       stage("Sonarqube scan"){
