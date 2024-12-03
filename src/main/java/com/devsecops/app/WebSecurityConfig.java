@@ -21,41 +21,40 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home").permitAll()
+                        .requestMatchers("/", "/home", "/css/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/home", true)
+                        .failureUrl("/login?error=true") // Redirige con un parámetro si falla
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll());
 
+                .logout((logout) -> logout
+                        .logoutUrl("/logout")  // Endpoint de logout
+                        .logoutSuccessUrl("/login?logout")  // Redirige al login tras cerrar sesión
+                        .invalidateHttpSession(true)  // Invalida la sesión
+                        .deleteCookies("JSESSIONID")  // Borra cookies de sesión
+                        .permitAll()
+                );
+
+        System.out.println("SecurityFilterChain configured with /logout endpoint");
         return http.build();
     }
-
-
 
     @Bean
     public UserDetailsService users() {
         // The builder will ensure the passwords are encoded before saving in memory
-        UserDetails user = User.builder()
-                .username("user")
-                .password(passwordEncoder().encode("password"))
-                .roles("USER")
-                .build();
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("password"))
-                .roles("USER", "ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(user, admin);
+        User.UserBuilder users = User.builder().passwordEncoder(passwordEncoder()::encode);
+        return new InMemoryUserDetailsManager(
+                users.username("user").password("password").roles("USER").build(),
+                users.username("admin").password("password").roles("USER", "ADMIN").build()
+        );
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 }

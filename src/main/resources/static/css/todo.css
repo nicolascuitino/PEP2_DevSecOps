@@ -1,0 +1,52 @@
+/* todo.css */
+
+/* Estilo para el contenedor de la lista de tareas */
+.todo-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.todo-container h2 {
+    color: #2980b9;
+}
+
+/* Estilo para las tareas */
+.list-group-item {
+    font-size: 18px;
+}
+
+.list-group-item.completed {
+    text-decoration: line-through;
+    color: #95a5a6;
+}
+
+/* Estilo para los botones */
+.btn-success {
+    background-color: #27ae60;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #1e8449;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+/* Formulario */
+.input-group .form-control {
+    border-radius: 4px 0 0 4px;
+}
+
+.input-group .btn {
+    border-radius: 0 4px 4px 0;
+}

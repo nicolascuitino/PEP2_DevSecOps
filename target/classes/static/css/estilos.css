@@ -1,0 +1,75 @@
+/* estilos.css */
+
+/* Importación de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* Fuente y colores generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+    color: #333;
+    margin: 0;
+    padding-top: 60px; /* Para el espacio de la navbar */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #2c3e50;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.navbar a {
+    color: #ecf0f1;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    color: #bdc3c7;
+}
+
+/* Encabezados */
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+/* Contenedor principal */
+.container {
+    margin-top: 30px;
+}
+
+/* Botones personalizados */
+.btn-custom {
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+}
+
+.btn-custom:hover {
+    background-color: #1f6391;
+}
+
+/* Campos de formulario */
+.form-control {
+    border-radius: 4px;
+}
+
+/* Alertas personalizadas */
+.alert-custom {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50;
+    color: #bdc3c7;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
