@@ -1,0 +1,5 @@
+# Created at 2024-12-09T18:05:16.384
+Boot Manifest-JAR contains absolute paths in classpath 'D:\UNI\2024-2\DevSecOps\pep2\PEP2_DevSecOps\PEP2_DevSecOps\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
