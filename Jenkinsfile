@@ -36,7 +36,16 @@ pipeline{
                 
             }
         }   
-        
+
+        stage('Run app') {
+            steps {
+                // Launch OWASP ZAP Docker container
+                sh '''
+                docker run --name app \
+                         nicolascuitino4/devsecops
+                '''
+            }
+        }
 
 
         stage('Run OWASP ZAP') {
