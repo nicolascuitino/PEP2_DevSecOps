@@ -19,9 +19,13 @@ pipeline{
                 
             }
         }
-        stage('Start Spring Boot App') {
+        stage('Run Application') {
             steps {
-                sh 'java -jar /var/jenkins_home/workspace/devsecops/target/app-0.0.1-SNAPSHOT.jar &'
+                script {
+                    // Ejecutar la aplicación Spring Boot
+                    sh 'mvn spring-boot:run &'
+                    sleep 20 // Esperar a que la app inicie
+                }
             }
         }
 
