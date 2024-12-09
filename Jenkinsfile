@@ -52,7 +52,7 @@ pipeline{
                         sh """
                              docker exec owasp \
                              zap-baseline.py \
-                             -t $target \
+                             -t $TARGET_URL \
                              -x report.xml \
                              -I
                          """
