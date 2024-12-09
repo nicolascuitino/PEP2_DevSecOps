@@ -37,9 +37,6 @@ pipeline{
         }
         
         stage('Prepare wrk directory') {
-             when {
-                         environment name : 'GENERATE_REPORT', value: 'true'
-             }
              steps {
                  script {
                          sh """
