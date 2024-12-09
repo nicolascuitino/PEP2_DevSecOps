@@ -33,17 +33,6 @@ pipeline{
                          zaproxy/zap-stable \
                          /bin/bash
                 '''
-                
-
-                // Perform the scan
-                sh '''
-                docker exec owasp \ zap-baseline.py \ -t $TARGET_URL \ -x report.xml \ -I
-                '''
-
-                // Generate a report
-                sh '''
-                docker exec zap zap-cli report -o /zap/wrk/$REPORT_PATH -f html
-                '''
             }
         }
         
