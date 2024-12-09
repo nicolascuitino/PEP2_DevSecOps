@@ -15,26 +15,26 @@ pipeline{
         stage("Build JAR FILE"){
             steps{
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nicolascuitino/PEP2_DevSecOps.git']])
-                dir("eval"){
+                
                     sh "mvn clean install"
-                }
+                
             }
         }
         stage("Build Docker Image"){
             steps{
-                dir("eval"){
+                
                     sh "docker build -t nicolascuitino4/devsecops ."
-                }
+                
             }
         }
         stage("Push Docker Image"){
             steps{
-                dir("eval"){
+                
                     withCredentials([string(credentialsId: 'dckrhubpassword', variable: 'dckpass')]){
                         sh "docker login -u nicolascuitino4 -p ${dckpass}"
                     } 
                     sh "docker push nicolascuitino4/devsecops"
-                }
+                
             }
         }   
         
