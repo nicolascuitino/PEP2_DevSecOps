@@ -30,7 +30,7 @@ pipeline{
         stage("Push Docker Image"){
             steps{
                 
-                    sh "docker login -u nicolascuitino4 -p )X9}x;w$3Y"iZ]E"
+                    sh "docker login -u nicolascuitino4 -p )X9}x;w3YiZ]E"
                     
                     sh "docker push nicolascuitino4/devsecops"
                 
