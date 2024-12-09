@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment {
         ZAP_PATH = '/zap/zap.sh'
-        TARGET_URL = 'http://localhost:8080'
+        TARGET_URL = 'http://localhost:8082'
         ZAP_PORT = '8081'
         REPORT_PATH = 'zap-report.html'
     }
