@@ -71,3 +71,9 @@ Pasos a seguir:
         -  ir a "Quality gates" y crear quality gate con nombre "pep2"
         -  añadir condición:  vulnerability: 0 tanto para "new code" como para "overall code"
         -  definir quality gate como default (set as default)
+  
+- Creacion imagen docker, despliegue docker y OWASP ZAP:
+	-  Para que Jenkins sea capaz de correr comandos de docker es necesario instalar docker dentro del contenedor de Jenkins
+ 	-  Dentro de Docker desktop, acceder al contenedor de Jenkins y abrir terminal
+  	-  Dentro de la terminar utilizar los siguientes comandos: "apt-get update" y "apt-get install -y docker.io"
+  	-  Notar que la instalacion de docker va a tardar un tiempo  	 	
