@@ -100,6 +100,8 @@ pipeline{
             sh '''
                      docker stop owasp
                      docker rm owasp
+                     docker stop app
+                     docker rm app
                  '''
         }
     }
