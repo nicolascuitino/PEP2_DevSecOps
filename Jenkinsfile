@@ -25,11 +25,6 @@ pipeline{
             }
         }
 
-        stage('Initialize docker'){
-            def dockerHome = tool 'docker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
-        }
-
         stage('Run OWASP ZAP') {
             steps {
                 // Launch OWASP ZAP Docker container
