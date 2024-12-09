@@ -39,7 +39,7 @@ pipeline{
 
         stage('trigger deploy app job') {
             steps {
-                build job: "deploy app", wait: true
+                build job: "deploy app", wait: false
             }
         }
 
