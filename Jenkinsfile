@@ -74,6 +74,10 @@ pipeline{
         always {
             echo 'Cleaning up resources...'
             sh 'pkill -f app-0.0.1-SNAPSHOT.jar || true'
+            sh '''
+                     docker stop owasp
+                     docker rm owasp
+                 '''
         }
     }
 }
