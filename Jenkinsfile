@@ -41,7 +41,7 @@ pipeline{
             steps {
                 // Launch OWASP ZAP Docker container
                 sh '''
-                docker run --name app -p 8081:8081 \
+                docker run --name app -p 8082:8082 \
                          nicolascuitino4/devsecops
                 '''
             }
