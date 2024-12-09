@@ -1,0 +1,141 @@
+pipeline{
+    agent any
+    tools {
+        maven "M3"
+    }
+    stages{
+        stage("Dependency check"){
+            steps{
+              dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owasp-dc'
+            }
+        }
+        
+
+      stage("Sonarqube scan"){
+            steps{
+                withSonarQubeEnv(installationName: 'sq1'){
+                    sh 'mvn clean package sonar:sonar'
+                }
+            }
+        }
+        
+      stage("SQ Quality gate"){
+            steps{
+                timeout(time:2, unit: 'MINUTES'){
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+    
+        
+        stage("Build JAR FILE"){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nicolascuitino/PEP2_DevSecOps.git']])
+                sh "mvn clean install"
+                
+            }
+        }
+        stage("Build Docker Image"){
+            steps{
+                
+                    sh "docker build -t nicolascuitino4/devsecops ."
+                
+            }
+        }
+        stage("Push Docker Image"){
+            steps{
+                
+                    sh "docker login -u nicolascuitino4 -p X9xw3YiZE"
+                    
+                    sh "docker push nicolascuitino4/devsecops"
+                
+            }
+        }   
+
+        stage('trigger deploy app job') {
+            steps {
+                build job: "deploy app", wait: false
+            }
+        }
+
+
+        stage('Run OWASP ZAP') {
+            steps {
+                // Launch OWASP ZAP Docker container
+                sh '''
+                docker run -dt -p 8081:8081 --name owasp \
+                         zaproxy/zap-stable \
+                         /bin/bash
+                '''
+            }
+        }
+        
+        stage('Prepare wrk directory') {
+             steps {
+                 script {
+                         sh """
+                             docker exec owasp \
+                             mkdir /zap/wrk
+                         """
+                     }
+                 }
+         }
+
+        stage('Scanning target on owasp container') {
+             steps {
+                        sh """
+                             docker exec owasp \
+                             zap-baseline.py \
+                             -t $TARGET_URL \
+                             -x report.xml \
+                             -I
+                         """
+                     }
+                    
+         }
+        
+        stage('Copy Report to Workspace'){
+             steps {
+                 script {
+                     sh '''
+                         docker cp owasp:/zap/wrk/report.xml ${WORKSPACE}/report.xml
+                     '''
+                 }
+             }
+         }
+     }
+    post {
+        always {
+            echo 'Cleaning up resources...'
+            sh 'pkill -f app-0.0.1-SNAPSHOT.jar || true'
+            sh '''
+                     docker stop owasp
+                     docker rm owasp
+                 '''
+            sh '''
+                     docker stop app
+                     docker rm app
+                 '''
+        }
+    }
+}
+
+
+
+deploy app :
+
+pipeline {
+    agent any
+
+    stages {
+         stage('Run app') {
+            steps {
+                // Launch OWASP ZAP Docker container
+                sh '''
+                docker run --name app -p 8082:8082 \
+                         nicolascuitino4/devsecops
+                '''
+            }
+        }
+    }
+}
