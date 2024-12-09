@@ -29,7 +29,7 @@ pipeline{
             steps {
                 // Launch OWASP ZAP Docker container
                 sh '''
-                docker run --rm \
+                docker run --name zap --rm \
                     -v $(pwd):/zap/wrk \
                     -p 8081:8081 \
                     zaproxy/zap-stable zap.sh -daemon -port $ZAP_PORT
