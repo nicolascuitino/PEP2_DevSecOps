@@ -30,9 +30,8 @@ pipeline{
         stage("Push Docker Image"){
             steps{
                 
-                    withCredentials([string(credentialsId: 'dckrhubpassword', variable: 'dckpass')]){
-                        sh "docker login -u nicolascuitino4 -p ${dckpass}"
-                    } 
+                    sh "docker login -u nicolascuitino4 -p )X9}x;w$3Y"iZ]E"
+                    
                     sh "docker push nicolascuitino4/devsecops"
                 
             }
