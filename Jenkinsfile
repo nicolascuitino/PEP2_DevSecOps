@@ -29,7 +29,7 @@ pipeline{
             steps {
                 // Launch OWASP ZAP Docker container
                 sh '''
-                docker run -dt --name owasp \ -p 8081:8081 \
+                docker run -dt -p 8081:8081 --name owasp \
                          zaproxy/zap-stable \
                          /bin/bash
                 '''
