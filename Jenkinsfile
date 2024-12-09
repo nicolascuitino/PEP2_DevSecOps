@@ -44,6 +44,7 @@ pipeline{
                 docker run --name app -p 8082:8082 \
                          nicolascuitino4/devsecops
                 '''
+                sleep 30 // Esperar a que la app inicie
             }
         }
 
