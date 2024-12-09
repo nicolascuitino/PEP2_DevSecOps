@@ -32,7 +32,7 @@ pipeline{
                 docker run --rm \
                     -v $(pwd):/zap/wrk \
                     -p 8081:8081 \
-                    owasp/zap2docker-stable zap.sh -daemon -port $ZAP_PORT
+                    zaproxy/zap-stable zap.sh -daemon -port $ZAP_PORT
                 '''
 
                 // Perform the scan
