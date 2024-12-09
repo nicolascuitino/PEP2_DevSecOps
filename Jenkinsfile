@@ -30,10 +30,10 @@ pipeline{
                     withCredentials([string(credentialsId: 'dckrhubpassword', variable: 'dckpass')]){
                         sh "docker login -u nicolascuitino4 -p ${dckpass}"
                     } 
-                    sh "docker push nicolascuitino4/proyecto_tingeso"
+                    sh "docker push nicolascuitino4/devsecops"
                 }
-            }
         }
+        
 
 
         stage('Run OWASP ZAP') {
