@@ -29,16 +29,15 @@ pipeline{
             steps {
                 // Launch OWASP ZAP Docker container
                 sh '''
-                docker run --name zap --rm \
-                    -v $(pwd):/zap/wrk \
-                    -p 8081:8081 \
-                    zaproxy/zap-stable zap.sh -daemon -port $ZAP_PORT
+                docker run -dt --name owasp \ -p 8081:8081 \
+                         zaproxy/zap-stable \
+                         /bin/bash
                 '''
+                
 
                 // Perform the scan
                 sh '''
-                docker exec zap \
-                    zap-cli quick-scan --self-contained --start-options="-config api.disablekey=true" $TARGET_URL
+                docker exec owasp \ zap-baseline.py \ -t $TARGET_URL \ -x report.xml \ -I
                 '''
 
                 // Generate a report
@@ -47,17 +46,44 @@ pipeline{
                 '''
             }
         }
-        stage('Publish Report') {
-            steps {
-                publishHTML(target: [
-                    allowMissing: false,
-                    keepAll: true,
-                    reportDir: '.',
-                    reportFiles: 'zap-report.html',
-                    reportName: 'ZAP Security Report'
-                ])
-            }
-        }
+        
+        stage('Prepare wrk directory') {
+             when {
+                         environment name : 'GENERATE_REPORT', value: 'true'
+             }
+             steps {
+                 script {
+                         sh """
+                             docker exec owasp \
+                             mkdir /zap/wrk
+                         """
+                     }
+                 }
+         }
+
+        stage('Scanning target on owasp container') {
+             steps {
+                        sh """
+                             docker exec owasp \
+                             zap-baseline.py \
+                             -t $target \
+                             -x report.xml \
+                             -I
+                         """
+                     }
+                    
+         }
+        
+        stage('Copy Report to Workspace'){
+             steps {
+                 script {
+                     sh '''
+                         docker cp owasp:/zap/wrk/report.xml ${WORKSPACE}/report.xml
+                     '''
+                 }
+             }
+         }
+     }
     }
     post {
         always {
