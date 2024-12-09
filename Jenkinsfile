@@ -19,15 +19,22 @@ pipeline{
                 
             }
         }
-        stage('Run Application') {
-            steps {
-                script {
-                    // Ejecutar la aplicación Spring Boot
-                    sh 'mvn spring-boot:run &'
-                    sleep 20 // Esperar a que la app inicie
+        stage("Build Docker Image"){
+            steps{
+                    sh "docker build -t nicolascuitino4/devsecops ."
+                
+            }
+        }
+        stage("Push Docker Image"){
+            steps{
+                    withCredentials([string(credentialsId: 'dckrhubpassword', variable: 'dckpass')]){
+                        sh "docker login -u nicolascuitino4 -p ${dckpass}"
+                    } 
+                    sh "docker push nicolascuitino4/proyecto_tingeso"
                 }
             }
         }
+
 
         stage('Run OWASP ZAP') {
             steps {
