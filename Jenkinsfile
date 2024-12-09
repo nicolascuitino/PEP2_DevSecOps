@@ -37,14 +37,9 @@ pipeline{
             }
         }   
 
-        stage('Run app') {
+        stage('trigger deploy app job') {
             steps {
-                // Launch OWASP ZAP Docker container
-                sh '''
-                docker run --name app -p 8082:8082 \
-                         nicolascuitino4/devsecops
-                '''
-                sleep 30 // Esperar a que la app inicie
+                build job: "deploy app", wait: true
             }
         }
 
