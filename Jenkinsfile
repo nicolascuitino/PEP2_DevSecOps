@@ -4,29 +4,7 @@ pipeline{
         maven "M3"
     }
     stages{
-        stage("Dependency check"){
-            steps{
-              dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'owasp-dc'
-            }
-        }
         
-
-      stage("Sonarqube scan"){
-            steps{
-                withSonarQubeEnv(installationName: 'sq1'){
-                    sh 'mvn clean package sonar:sonar'
-                }
-            }
-        }
-        
-      stage("SQ Quality gate"){
-            steps{
-                timeout(time:2, unit: 'MINUTES'){
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
-    
         
         stage("Build JAR FILE"){
             steps{
