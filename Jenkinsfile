@@ -10,7 +10,7 @@ pipeline{
                     sh 'mvn clean package sonar:sonar'
                 }
             }
-        }
+        
         
       stage("SQ Quality gate"){
             steps{
@@ -26,7 +26,7 @@ pipeline{
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nicolascuitino/PEP2_DevSecOps.git']])
                 sh "mvn clean install"
                 
+                }
             }
         }
-    }
 }
